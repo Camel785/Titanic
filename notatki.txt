@@ -23,7 +23,7 @@ q = wracamy do terminala z roznych dziwnych sytuacji w ktorych nie wiemy co wcis
 
 git push pcha wszystlie pliki lokalnie to github
  git remote add origin https://github.com/Camel785/Titanic.git
-git push u- origin main
+git push (#u-#z tym nie dziala?) origin main
 
 i po tych komendach cmnd r na github i zobaczymy wszystko w internecie... niesamowite tbh
 
@@ -31,4 +31,13 @@ tworzymy sekretny plik  touch .gitignore ktorego nie bedzie widac chyba ze wywol
 
 git rm --cached -r . usuwa wszystko z katalogu przejsciowego to jest po git add a przed git commit
 tj jak dodamy niechcaca ds store itp i chcemy wrocic
+
+
+hmm dodalismy gitignore do github ale wciaz nie wiem jak sie tam chowa rzeczy, zeby nie byly wyswietlane??? hmmmorigin main
+okej juz wiemy jak to dziala, dziala :D
+
+
+
+teraz rozgaleziamy naszego gita za pomoca git branch moja_nazwa_co_chce_zrobic
+po stworzeniu git branch komenda git branch pokazuje nam w ktorym jestesmy mierjscu tj main czy moja_nazwa...
 

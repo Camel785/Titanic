@@ -64,4 +64,6 @@ print(df.info())
 
 analysis = CabinsAnalysis(df)
 
-analysis.plot_analysis()
+analysis.mortality_plot()
+analysis.fare_plot()
+#analysis.plot_analysis()
