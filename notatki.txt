@@ -32,3 +32,4 @@ tworzymy sekretny plik  touch .gitignore ktorego nie bedzie widac chyba ze wywol
 git rm --cached -r . usuwa wszystko z katalogu przejsciowego to jest po git add a przed git commit
 tj jak dodamy niechcaca ds store itp i chcemy wrocic
 
+
