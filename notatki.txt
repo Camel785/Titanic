@@ -12,3 +12,23 @@ ale to sie jeszcz eokaze, bo bedzie przeciez jeszcze gitingore)
 usunalem text w data.csv i zapisalem to aby nauczyc sie oblsugi git checkout,
 git diff data.csv pokazuje jakie zmiany zrobilismy, i teraz uzywamy gitcheckout jezeli chcemy wrocic do wersji,
 ktora zapisalismy wczesnije i dodalismy za pomoca git commit
+(.venv) dorotaowczarek@Dorotkas-MacBook-Pro Titanic % git checkout data.csv
+Updated 1 path from the index
+(.venv) dorotaowczarek@Dorotkas-MacBook-Pro Titanic % git log
+kolor niebieski ktory podswietla nazwy plikow oznacza ze sa do git add ponownego bo rpzeciez piszac tu,
+ caly czas wprowadzam zmiany w stosunku do tego co bylo
+ tj moglbym teraz zrobic checkout text.txt i wsyzstko by sie poszlo w diabli...
+
+q = wracamy do terminala z roznych dziwnych sytuacji w ktorych nie wiemy co wcisnac XD
+
+git push pcha wszystlie pliki lokalnie to github
+ git remote add origin https://github.com/Camel785/Titanic.git
+git push u- origin main
+
+i po tych komendach cmnd r na github i zobaczymy wszystko w internecie... niesamowite tbh
+
+tworzymy sekretny plik  touch .gitignore ktorego nie bedzie widac chyba ze wywolamy za pomoca ls -a
+
+git rm --cached -r . usuwa wszystko z katalogu przejsciowego to jest po git add a przed git commit
+tj jak dodamy niechcaca ds store itp i chcemy wrocic
+
