@@ -2,3 +2,13 @@ tworzymy folder za pomoca mkdir Titanic w nim ls sprawdza czy cos jest, touch ma
 potem dajemy git init aby zainicjalizowac nowy git w naszy folderze, jest on widoczny nie jako ls a jako ls -a bo jest schowany
 uzywamy git status aby zoabczyc ktore pliki sa w katalogu roboczym (chyba)
 git add main.py robimy jako tracking i czekamy do zatwierdzenia uzyj git add . aby dodac wszystkie pliki
+git commit -m "blabla" zatwierdza nam pliki
+
+czyli dodalismy wszystkie zmiany do Stagign Area i dopiero po uzyciu git commit dodajemy je do local repository
+(mozliwe ze to wlasnie na tym etapie mialem nie dodawac wszystkich plikow
+ale to sie jeszcz eokaze, bo bedzie przeciez jeszcze gitingore)
+
+
+usunalem text w data.csv i zapisalem to aby nauczyc sie oblsugi git checkout,
+git diff data.csv pokazuje jakie zmiany zrobilismy, i teraz uzywamy gitcheckout jezeli chcemy wrocic do wersji,
+ktora zapisalismy wczesnije i dodalismy za pomoca git commit
