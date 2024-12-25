@@ -1,0 +1,4 @@
+tworzymy folder za pomoca mkdir Titanic w nim ls sprawdza czy cos jest, touch main.py.. tworzymy w folderze
+potem dajemy git init aby zainicjalizowac nowy git w naszy folderze, jest on widoczny nie jako ls a jako ls -a bo jest schowany
+uzywamy git status aby zoabczyc ktore pliki sa w katalogu roboczym (chyba)
+git add main.py robimy jako tracking i czekamy do zatwierdzenia uzyj git add . aby dodac wszystkie pliki
