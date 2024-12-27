@@ -53,28 +53,28 @@ class CabinsAnalysis:
 
         plt.title("Mortality Rate by Cabin Letter")
         plt.xlabel("Cabin Letter", fontsize=14)
-        plt.ylabel("Mortality Rate(%)", fontsize=14)
+        plt.ylabel("Mortality ", fontsize=14)
 
         plt.xticks(rotation=0)
         plt.show()
 
     def fare_plot(self):
-        # fare_by_survival = self.analyze_fare()  # Get the analysis data
-        #
-        # # Create the plot
-        # fare_by_survival.plot(kind='bar', stacked=True, color=['red', 'green'], edgecolor='black', figsize=(12, 8))
-        #
-        # # Adding title and axis labels
-        # plt.title("Survival by Fare Category", fontsize=16)
-        # plt.xlabel("Fare Category", fontsize=14)
-        # plt.ylabel("Number of People", fontsize=14)
-        # plt.xticks(rotation=45)
-        #
-        # # Adding a legend
-        # plt.legend(["Died", "Survived"], loc='upper left')
-        #
-        # # Show the plot
-        # plt.show()
+        fare_by_survival = self.analyze_fare()  # Get the analysis data
+
+        # Create the plot
+        fare_by_survival.plot(kind='bar', stacked=True, color=['red', 'green'], edgecolor='black', figsize=(12, 8))
+
+        # Adding title and axis labels
+        plt.title("Survival by Fare Category", fontsize=16)
+        plt.xlabel("Fare Category", fontsize=14)
+        plt.ylabel("Number of People", fontsize=14)
+        plt.xticks(rotation=45)
+
+        # Adding a legend
+        plt.legend(["Died", "Survived"], loc='upper left')
+
+        # Show the plot
+        plt.show()
         # fare_by_survival = self.analyze_fare()  # Get the analysis data
         #
         # # Plot for each fare category
@@ -92,37 +92,37 @@ class CabinsAnalysis:
         #
         #     # Show the pie chart
         #     plt.show()
-        fare_bins = [0, 50, 100, 150, 200, 250, 500]
-        fare_labels = ['0-50', '51-100', '101-150', '151-200', '201-250', '250+']
-
-        # Dodajemy nową kolumnę z kategorią cenową
-        self.df['Fare_Category'] = pd.cut(self.df['Fare'], bins=fare_bins, labels=fare_labels, right=False)
-
-        # Grupujemy dane po Fare_Category i Survived, liczymy ile osób przeżyło i zginęło w każdej kategorii
-        survival_by_fare_category = self.df.groupby(['Fare_Category', 'Survived']).size().unstack(fill_value=0)
-
-        # Przygotowanie do wykresu kołowego
-        # Rozpoczynamy od "flattening" DataFrame: tworzymy listę etykiet i wartości dla wykresu kołowego
-        labels = []
-        sizes = []
-        for category in survival_by_fare_category.index:
-            # Dla każdej kategorii cenowej
-            survived = survival_by_fare_category.loc[category, 1]  # Liczba przeżyłych
-            died = survival_by_fare_category.loc[category, 0]  # Liczba zmarłych
-
-            # Dodajemy odpowiednie etykiety i liczby
-            labels.append(f"{category} - Survived")
-            sizes.append(survived)
-            labels.append(f"{category} - Died")
-            sizes.append(died)
-
-        # Tworzymy wykres kołowy
-        plt.figure(figsize=(10, 10))
-        plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90, colors=plt.cm.Paired.colors)
-        plt.title("Survival and Death Rate by Fare Category")
-
-        # Pokazujemy wykres
-        plt.show()
+        # fare_bins = [0, 50, 100, 150, 200, 250, 500]
+        # fare_labels = ['0-50', '51-100', '101-150', '151-200', '201-250', '250+']
+        #
+        # # Dodajemy nową kolumnę z kategorią cenową
+        # self.df['Fare_Category'] = pd.cut(self.df['Fare'], bins=fare_bins, labels=fare_labels, right=False)
+        #
+        # # Grupujemy dane po Fare_Category i Survived, liczymy ile osób przeżyło i zginęło w każdej kategorii
+        # survival_by_fare_category = self.df.groupby(['Fare_Category', 'Survived']).size().unstack(fill_value=0)
+        #
+        # # Przygotowanie do wykresu kołowego
+        # # Rozpoczynamy od "flattening" DataFrame: tworzymy listę etykiet i wartości dla wykresu kołowego
+        # labels = []
+        # sizes = []
+        # for category in survival_by_fare_category.index:
+        #     # Dla każdej kategorii cenowej
+        #     survived = survival_by_fare_category.loc[category, 1]  # Liczba przeżyłych
+        #     died = survival_by_fare_category.loc[category, 0]  # Liczba zmarłych
+        #
+        #     # Dodajemy odpowiednie etykiety i liczby
+        #     labels.append(f"{category} - Survived")
+        #     sizes.append(survived)
+        #     labels.append(f"{category} - Died")
+        #     sizes.append(died)
+        #
+        # # Tworzymy wykres kołowy
+        # plt.figure(figsize=(10, 10))
+        # plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90, colors=plt.cm.Paired.colors)
+        # plt.title("Survival and Death Rate by Fare Category")
+        #
+        # # Pokazujemy wykres
+        # plt.show()
 
     def plot_analysis(self):
         """
