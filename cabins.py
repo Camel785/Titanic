@@ -65,7 +65,7 @@ class CabinsAnalysis:
         fare_by_survival.plot(kind='bar', stacked=True, color=['red', 'green'], edgecolor='black', figsize=(12, 8))
 
         # Adding title and axis labels
-        plt.title("Survival by Fskjfklsjdfklsjdfare Category", fontsize=16)
+        plt.title("Survival by Category", fontsize=16)
         plt.xlabel("Fare Category", fontsize=14)
         plt.ylabel("Number of People", fontsize=14)
         plt.xticks(rotation=45)
