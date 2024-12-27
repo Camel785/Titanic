@@ -11,7 +11,8 @@ from stats import Statistic
 pd.set_option("display.max_columns", 20)
 df = pd.read_csv("data.csv")
 print(df.info())
-
+gender = df.groupby(["Survived", "Sex"]).size().unstack(fill_value=0)
+print(gender)
 #print(df.isna().values.any())
 # rows_with_NaN = df[df.isna().any(axis=1)].index
 # #print(rows_with_NaN)
@@ -59,10 +60,11 @@ print(df.info())
 
 analysis = CabinsAnalysis(df)
 
-analysis.mortality_plot()
-analysis.fare_plot()
-analysis.family_plot()
+#analysis.mortality_plot()
+#analysis.fare_plot()
+#analysis.family_plot()
 
 statistics = Statistic(df)
 
 statistics.death_plot()
+statistics.survival_by_gender()
