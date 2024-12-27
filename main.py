@@ -4,6 +4,7 @@ import numpy as np
 import plotly.express as px
 import seaborn as sns
 from cabins import CabinsAnalysis
+from stats import Statistic
 #"C" (Cherbourg), "Q" (Queenstown), "S" (Southampton).EMBARKED
 #
 
@@ -61,3 +62,7 @@ analysis = CabinsAnalysis(df)
 analysis.mortality_plot()
 analysis.fare_plot()
 analysis.family_plot()
+
+statistics = Statistic(df)
+
+statistics.death_plot()
