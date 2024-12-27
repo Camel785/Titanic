@@ -33,8 +33,6 @@ class CabinsAnalysis:
         return fare_by_survival
 
 
-
-
     def analyze_family(self):
         """
         Analizujemy dane o rodzinach (Sibsp - liczba osob spokrewnionych) (parch - liczba rodzicow/dzieci)
@@ -70,100 +68,35 @@ class CabinsAnalysis:
         plt.ylabel("Number of People", fontsize=14)
         plt.xticks(rotation=45)
 
-        # Adding a legend
+
         plt.legend(["Died", "Survived"], loc='upper left')
 
-        # Show the plot
         plt.show()
-        # fare_by_survival = self.analyze_fare()  # Get the analysis data
-        #
-        # # Plot for each fare category
-        # for fare_category in fare_by_survival.index:
-        #     # Get the survival counts for the current fare category
-        #     survival_counts = fare_by_survival.loc[fare_category]
-        #
-        #     # Labels for the pie chart (0 for Died, 1 for Survived)
-        #     labels = ['Died', 'Survived']
-        #
-        #     # Plot the pie chart
-        #     plt.figure(figsize=(7, 7))  # Make the plot a square
-        #     plt.pie(survival_counts, labels=labels, autopct='%1.1f%%', startangle=90, colors=['red', 'green'])
-        #     plt.title(f"Survival by Fare Category: {fare_category}")
-        #
-        #     # Show the pie chart
-        #     plt.show()
-        # fare_bins = [0, 50, 100, 150, 200, 250, 500]
-        # fare_labels = ['0-50', '51-100', '101-150', '151-200', '201-250', '250+']
-        #
-        # # Dodajemy nową kolumnę z kategorią cenową
-        # self.df['Fare_Category'] = pd.cut(self.df['Fare'], bins=fare_bins, labels=fare_labels, right=False)
-        #
-        # # Grupujemy dane po Fare_Category i Survived, liczymy ile osób przeżyło i zginęło w każdej kategorii
-        # survival_by_fare_category = self.df.groupby(['Fare_Category', 'Survived']).size().unstack(fill_value=0)
-        #
-        # # Przygotowanie do wykresu kołowego
-        # # Rozpoczynamy od "flattening" DataFrame: tworzymy listę etykiet i wartości dla wykresu kołowego
-        # labels = []
-        # sizes = []
-        # for category in survival_by_fare_category.index:
-        #     # Dla każdej kategorii cenowej
-        #     survived = survival_by_fare_category.loc[category, 1]  # Liczba przeżyłych
-        #     died = survival_by_fare_category.loc[category, 0]  # Liczba zmarłych
-        #
-        #     # Dodajemy odpowiednie etykiety i liczby
-        #     labels.append(f"{category} - Survived")
-        #     sizes.append(survived)
-        #     labels.append(f"{category} - Died")
-        #     sizes.append(died)
-        #
-        # # Tworzymy wykres kołowy
-        # plt.figure(figsize=(10, 10))
-        # plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90, colors=plt.cm.Paired.colors)
-        # plt.title("Survival and Death Rate by Fare Category")
-        #
-        # # Pokazujemy wykres
-        # plt.show()
 
-    def plot_analysis(self):
-        """
-        Tworzymy Zaawansowany wykres z wynikami wszystkich analiz z uzyciem Seaborn
-        """
-        sns.set(style='whitegrid')
+    def family_plot(self):
+        family_by_survival, family_by_survival_parch = self.analyze_family()
 
-        fig, axes = plt.subplots(2, 2, figsize=(16, 10))
-        fig.suptitle("Analiza Danych o Pasazerach Titanic", fontsize=16)
+        fig, ax = plt.subplots(figsize=(10, 6))
 
-        mortality_by_cabin, count_by_cabin = self.mortality()
-        mortality_by_cabin_percent = (mortality_by_cabin / count_by_cabin) * 100
-        sns.barplot(x=mortality_by_cabin_percent.index, y=mortality_by_cabin_percent.values, ax=axes[0,0], palette="Blues_d")
-        axes[0, 0].set_title("Śmiertelność w zależności od litery kabiny")
-        axes[0, 0].set_xlabel("Litera Kabiny")
-        axes[0, 0].set_ylabel("Procent Zmarłych (%)")
+        # Dane dla wykresu
+        labels = ['Survived', 'Died']
+        sibsp_values = [family_by_survival[1], family_by_survival[0]]  # 1 -> Survived, 0 -> Died
+        parch_values = [family_by_survival_parch[1], family_by_survival_parch[0]]
 
-        # Wykres 2: Fare (Opłata) w zależności od przeżycia
-        fare_by_survival = self.analyze_fare()
-        sns.barplot(x=fare_by_survival.index, y=fare_by_survival.values, ax=axes[0, 1], palette="Reds_d")
-        axes[0, 1].set_title("Średnia opłata w zależności od przeżycia")
-        axes[0, 1].set_xlabel("Przeżycie")
-        axes[0, 1].set_ylabel("Średnia Opłata")
+        # Słupki dla SibSp
+        ax.bar(labels, sibsp_values, width=0.4, label='SibSp (Siblings/Spouses)', color='skyblue', align='center')
 
-        # Wykres 3: Średnia liczba rodzeństwa/spokrewnionych (SibSp) w zależności od przeżycia
-        family_by_survival_sibsp, _ = self.analyze_family()
-        sns.barplot(x=family_by_survival_sibsp.index, y=family_by_survival_sibsp.values, ax=axes[1, 0],
-                    palette="Greens_d")
-        axes[1, 0].set_title("Średnia liczba rodzeństwa/spokrewnionych (SibSp)")
-        axes[1, 0].set_xlabel("Przeżycie")
-        axes[1, 0].set_ylabel("Średnia Liczba")
+        # Słupki dla Parch
+        ax.bar(labels, parch_values, width=0.4, label='Parch (Parents/Children)', color='salmon', align='edge')
 
-        # Wykres 4: Średnia liczba rodziców/dzieci (Parch) w zależności od przeżycia
-        _, family_by_survival_parch = self.analyze_family()
-        sns.barplot(x=family_by_survival_parch.index, y=family_by_survival_parch.values, ax=axes[1, 1],
-                    palette="Purples_d")
-        axes[1, 1].set_title("Średnia liczba rodziców/dzieci (Parch)")
-        axes[1, 1].set_xlabel("Przeżycie")
-        axes[1, 1].set_ylabel("Średnia Liczba")
+        # Ustawienia wykresu
+        ax.set_title('Average Family Size by Survival')
+        ax.set_xlabel('Survival Status')
+        ax.set_ylabel('Average Family Size')
+        ax.legend()
 
-        # Dostosowanie układu
-        plt.tight_layout(rect=[0, 0.03, 1, 0.95])
         plt.show()
+
+
+
 

@@ -7,12 +7,6 @@ from cabins import CabinsAnalysis
 #"C" (Cherbourg), "Q" (Queenstown), "S" (Southampton).EMBARKED
 #
 
-
-
-
-
-
-
 pd.set_option("display.max_columns", 20)
 df = pd.read_csv("data.csv")
 print(df.info())
@@ -66,4 +60,4 @@ analysis = CabinsAnalysis(df)
 
 analysis.mortality_plot()
 analysis.fare_plot()
-#analysis.plot_analysis()
+analysis.family_plot()
